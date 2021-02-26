@@ -1,0 +1,89 @@
+
+body.nav-md .container.body .right_col{
+    margin-left: 0;;
+}
+
+body footer {
+    margin-left: 0;;
+}
+
+.col-md-8, .col-sm-4 {
+    float: none;
+}
+
+.table td, .table th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.top-container {
+    width: 100%;
+    min-height: 50px;
+    line-height: 50px;
+    height: 50px;
+    background-color: #EDEDED;
+}
+
+.top-container .top-left {
+    display: inline-block;
+    margin-left: 30px;
+    padding-left: 20px;
+    height: 100%;
+    min-height: 100%;
+    line-height: 50px;
+    font-style: bold;
+    font-size: 18px;
+}
+
+.top-container .top-left::after {
+    clear: both;
+    zoom: 1;
+}
+
+.top-container .top-left span:first-child {
+    margin-right: 1em;
+    float: left;
+    line-height: 50px;
+}
+
+.top-container .top-right {
+    display: inline-block;
+    float: right;
+    margin-right: 3em;
+    height: 50px;
+    min-height: 50px;
+    line-height: 50px;
+}
+
+.top-right a {
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+}
+
+.top-right a:hover, .top-right a:active {
+    text-decoration: underline;
+    color: 373879C;
+}
+
+.right-middle {
+    height: 571px;
+    min-height: 571px;
+    margin: 0 auto;
+}
+
+.form-check-inline {
+    width: 80%;
+}
+
+.form-check-inline .form-group:first-child {
+    width: 20%;
+}
+
+.input-group {
+    margin-top: 3px;
+    margin-left: 2em;
+}
+

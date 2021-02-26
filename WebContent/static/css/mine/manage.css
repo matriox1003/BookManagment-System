@@ -1,0 +1,16 @@
+@charset "utf8";
+
+.space {
+    margin-right: 1em;
+}
+
+.table tr td, .table tr th{
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+
+.book-search a:link, .book-search a:hover, .book-search a:active {
+    color: #DDDDDD;
+}

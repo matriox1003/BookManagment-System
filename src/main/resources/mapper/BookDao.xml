@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.BookDao">
+	<!-- 为Dao接口方法提供sql语句 -->
+	
+	<!--=========================  图书查询功能 ===========================================-->
+	
+	<!-- 查询所有信息 -->
+	<select id="queryAllBook" resultType="Book">
+		SELECT * FROM book
+	</select>
+	
+	<!-- 查询所有信息 从start 开始查找offset个 -->
+	<select id="queryBookRange" parameterType="int" resultType="Book">
+		SELECT TOP ${offset} *
+		FROM book WHERE b_id NOT IN 
+		(SELECT TOP ${start} b_id FROM book)
+	</select>
+	
+	<select id="queryBookCount" resultType="Integer">
+		SELECT COUNT(1) FROM book
+	</select>
+	
+	<!-- 通过图书类型进行查找 -->
+	<select id="queryBookBybTypeRange" resultType="Book">
+		SELECT TOP ${offset} * FROM book WHERE b_id NOT IN 	 
+		(SELECT TOP ${start} b_id FROM book) AND b_type = #{bType}
+	</select>
+	
+	<!-- 按图书名称查找 -->
+	<select id="queryBookBybName" parameterType="string" resultType="Book">
+		SELECT * FROM book WHERE b_name = #{bName}
+	</select>
+	
+	<select id="queryBookBybNameRange" resultType="Book">
+		SELECT TOP ${offset} * FROM book WHERE b_id NOT IN 	 
+		(SELECT TOP ${start} b_id FROM book) AND b_name = #{bName}
+	</select>
+	
+	<!-- 按图书作者进行查找 -->
+	<select id="queryBookBybWriterRange" resultType="Book">
+		SELECT TOP ${offset} * FROM book WHERE b_id NOT IN 	 
+		(SELECT TOP ${start} b_id FROM book) AND b_writer = #{bWriter}
+	</select>
+	
+	 <!-- 按出版社进行查找 -->
+	 <select id="queryBookBybPublicRange" resultType="Book">
+	  	SELECT TOP ${offset} * FROM book WHERE b_id NOT IN 	 
+		(SELECT TOP ${start} b_id FROM book) AND b_public = #{bPublic}
+	 </select>
+	  
+	  <!-- 按图书类型查找的图书总数 -->
+	  <select id="queryBookBybTypeCount" resultType="Integer">
+	  	SELECT COUNT(1) FROM book WHERE b_type = #{bType}
+	  </select>
+	  
+	  <!-- 按图书名称查找的图书总数 -->
+	  <select id="queryBookBybNameCount" resultType="Integer">
+	  	SELECT COUNT(1) FROM book WHERE b_name = #{bName}
+	  </select>
+	  
+	  <!-- 按图书作者查找的图书总数 -->
+	  <select id="queryBookBybWriterCount" resultType="Integer">
+	  	SELECT COUNT(1) FROM book WHERE b_writer = #{bWriter}
+	  </select>
+	  
+	  <!-- 按图书出版社查找的图书总数 -->
+	  <select id="queryBookBybPublicCount" resultType="Integer">
+	  	SELECT COUNT(1) FROM book WHERE b_public = #{bPublic}
+	  </select>
+	  
+	 <!--============================ 插入图书功能 =================================-->
+	  
+	 <insert id="insertBook" parameterType="Book">
+		INSERT INTO book(b_type, b_name, b_number, b_writer, b_public) 
+		VALUES (#{bType}, #{bName}, #{bNumber}, #{bWriter}, #{bPublic})
+	 </insert>
+	 
+	 <!--=========================== 修改图书功能 ====================================-->
+	 
+	 <update id="updateBook" parameterType="Book">
+	 	UPDATE book SET b_type = #{bType}, b_name = #{bName}, b_number = #{bNumber},
+	 	b_writer = #{bWriter}, b_public = #{bPublic} WHERE b_name = #{bName}
+	 </update>
+	 
+	 <!-- ============================ 删除图书功能 ===================================-->
+	 
+	 <delete id="deleteBookBybId" parameterType="Book">
+	 	DELETE FROM book WHERE b_id = #{bId}
+	 </delete>
+</mapper>
